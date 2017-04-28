@@ -25,6 +25,11 @@ $route = $request->get('route', 'default/index'); // $_GET['route']
 
 //todo: защита от дурака если нет слэш в значении
 
+if( !preg_match("//", $route) ) 
+{
+	throw new Exception("Wrong format for controller")
+}
+
 $route = explode('/', $route);
 
 $controller = ucfirst($route[0]) . 'Controller';
