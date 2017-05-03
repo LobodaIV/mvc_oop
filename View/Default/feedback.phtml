@@ -1,8 +1,11 @@
 <h1>Feedback</h1>
 
-<form method='post'>
-    <input type="text" name="author"/><br>
-    <input type="email" name="email"/><br>
-    <textarea name="message"></textarea><br>
+<form action="" method='post'>
+    <input type="text" name="author" placeholder="Author Name:" /><br>
+  	<?php if( isset($err_author) ) { echo $err_author; } ?>
+    <input type="text" name="email" placeholder="Email:" /><br>
+    <?php if( isset($err_email) ) { echo $err_email; } ?>
+    <textarea name="message" placeholder="Your message:"></textarea><br>
+    <?php if( isset($err_message) ) { echo $err_message; } ?>
     <button>Go</button>
 </form>

@@ -28,7 +28,7 @@ class DefaultController extends Controller
                 ]);
             }
         }
-        
-        return $this->render('feedback.phtml');
+
+        return $this->render('feedback.phtml',$form->errors);
     }
 }
