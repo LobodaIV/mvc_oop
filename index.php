@@ -40,4 +40,6 @@ if (!method_exists($controller, $action)) {
     throw new \Exception("{$action} not found");
 }
 
-echo $controller->$action();
+echo $controller->$action($request);
+
+require VIEW_DIR . 'layout.phtml';
