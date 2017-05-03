@@ -7,17 +7,12 @@ define('VIEW_DIR', ROOT.'View' . DS);
 
 spl_autoload_register(function($className) {
     
-    $file = "{$className}.php";
-    
-    if (file_exists("Library/$file")) {
-        require_once "Library/$file";
-    } elseif (file_exists("Controller/$file")) {
-        require_once "Controller/$file";
-    } else {
-        throw new Exception("{$file} not found");
+    $file = ROOT . str_replace('\\', DS, "{$className}.php");
+    if( !file_exists($file) )
+    {
+    	require $file;
     }
-    
-    
+	    
 });
 
 $request = new Request();
@@ -27,7 +22,7 @@ $route = $request->get('route', 'default/index'); // $_GET['route']
 
 if( !preg_match("//", $route) ) 
 {
-	throw new Exception("Wrong format for controller")
+	throw new Exception("Wrong format for controller");
 }
 
 $route = explode('/', $route);
