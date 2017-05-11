@@ -22,8 +22,14 @@ spl_autoload_register( function($className) {
 \Library\Session::start();
 
 $request = new \Library\Request();
+
+$pdo = new \PDO('mysql: host=localhost; dbname=mvc','root','');
+$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
 $container = new \Library\Container();
 $container->set('router', new \Library\Router());
+$container->set('db_connection', $pdo);
+$container->set('repository', (new \Library\repositoryManager())->setPdo($pdo));
 
 $route = $request->get('route', 'default/index'); // $_GET['route']
 

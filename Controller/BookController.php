@@ -9,7 +9,7 @@ class BookController extends Controller
 {
     public function indexAction()
     {
-        $model = new BookRepository();
+        $model = $this->get('repository')->getRepository('Book');
         $books = $model->findAll();
         
         $author = 'King';

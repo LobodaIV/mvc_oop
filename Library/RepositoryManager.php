@@ -4,6 +4,8 @@ namespace Library;
 
 class RepositoryManager
 {
+	use PdoAwareTrait;
+
 	private $repositories = []; // ['Book' => object(BookRepository), 'Feedback' => ...]
 
 	public function getRepository($entityName)
@@ -13,7 +15,7 @@ class RepositoryManager
 		}
 
 		$repoClassName = "\\Model\\{$entityName}Repository";
-		$repo = new $repoClassName();
+		$repo = (new $repoClassName())->setPdo($this->pdo);
 
 		$this->repositories[$entityName] = $repo;
 
