@@ -2,7 +2,7 @@
 
 namespace Library;
 
-abstract class Router
+class Router
 {
 	public function redirect($to)
 	{
