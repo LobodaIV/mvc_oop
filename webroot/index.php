@@ -47,5 +47,3 @@ if (!method_exists($controller, $action)) {
 }
 
 echo $controller->$action($request);
-
-require VIEW_DIR . 'layout.phtml';
