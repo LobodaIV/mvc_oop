@@ -19,13 +19,17 @@ spl_autoload_register( function($className) {
 	    
 });
 
-$request = new Library\Request();
+\Library\Session::start();
+
+$request = new \Library\Request();
+$container = new \Library\Container();
+$container->set('router', new \Library\Router());
+
 $route = $request->get('route', 'default/index'); // $_GET['route']
 
 //todo: защита от дурака если нет слэш в значении
 
-if( !preg_match("//", $route) ) 
-{
+if( !preg_match("//", $route) ) {
 	throw new \Exception("Wrong format for controller");
 }
 
@@ -34,7 +38,9 @@ $route = explode('/', $route);
 $controller = 'Controller' . DS . ucfirst($route[0]) . 'Controller';
 $action = $route[1] . 'Action';
 
-$controller = new $controller();//ControllerDefaultController
+//$controller = new $controller();//Controller\DefaultController
+
+$controller = (new $controller())->setContainer($container);
 
 if (!method_exists($controller, $action)) {
     throw new \Exception("{$action} not found");
