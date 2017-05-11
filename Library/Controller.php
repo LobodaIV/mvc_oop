@@ -23,14 +23,17 @@ abstract class Controller
 		$dir = str_replace(['\\', 'Controller'], '', get_called_class());
 		$file = VIEW_DIR . $dir . DS . $view;
 	
-    	if( !file_exists($file) )
-    	{
+    	if ( !file_exists($file) ) {
     		throw new \Exception("{$file} not found");
     	}
     	
         ob_start();
-        require_once $file;
-        return ob_get_clean();
+        require $file;
+        $content = ob_get_clean();
 	
+        ob_start();
+        require VIEW_DIR . 'layout.phtml';
+        return ob_get_clean();
+
 	}
 }
