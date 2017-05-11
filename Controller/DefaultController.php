@@ -4,7 +4,7 @@ namespace Controller;
 
 use Library\Controller;
 use Model\Form\FeedbackForm;
-use Model\FeedbackModel;
+use Model\FeedbackRepository;
 use Library\Request;
 use Library\Session;
 use Library\Router;
@@ -23,7 +23,7 @@ class DefaultController extends Controller
         if ($request->isPost()) {
             if ($form->isValid()) {
                
-                $model = new FeedbackModel();
+                $model = new FeedbackRepository();
                 $model->save([
                     'author' => $form->author,
                     'email' => $form->email,

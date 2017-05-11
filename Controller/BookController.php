@@ -3,13 +3,13 @@
 namespace Controller;
 
 use Library\Controller;
-use Model\BookModel;
+use Model\BookRepository;
 
 class BookController extends Controller
 {
     public function indexAction()
     {
-        $model = new BookModel();
+        $model = new BookRepository();
         $books = $model->findAll();
         
         $author = 'King';
