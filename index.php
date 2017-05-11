@@ -1,6 +1,7 @@
 <?php
 error_reporting(E_ALL);
 
+
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', __DIR__ . DS);
 define('VIEW_DIR', ROOT.'View' . DS);

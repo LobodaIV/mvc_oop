@@ -6,6 +6,8 @@ use Library\Controller;
 use Model\Form\FeedbackForm;
 use Model\FeedbackModel;
 use Library\Request;
+use Library\Session;
+use Library\Router;
 
 class DefaultController extends Controller
 {
@@ -20,15 +22,18 @@ class DefaultController extends Controller
         
         if ($request->isPost()) {
             if ($form->isValid()) {
+               
                 $model = new FeedbackModel();
                 $model->save([
                     'author' => $form->author,
                     'email' => $form->email,
                     'message' => $form->message,
                 ]);
+                Session::setFlash('Feedback sent');
+                Router::redirect('/index.php?route=default/feedback');
             }
         }
 
-        return $this->render('feedback.phtml',$form->errors);
+        return $this->render('feedback.phtml',['form' => $form]);
     }
 }
