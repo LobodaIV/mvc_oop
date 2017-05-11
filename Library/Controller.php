@@ -4,6 +4,19 @@ namespace Library;
 abstract class Controller
 {
 
+	protected $container;
+
+	public function setContainer(Container $container)
+	{
+		$this->container = $container;
+		return $this;
+	}
+
+	public function get($key)
+	{
+		return $this->container->get($key);
+	}
+
 	public static function render($view, array $args = array())
 	{
 		extract($args);
