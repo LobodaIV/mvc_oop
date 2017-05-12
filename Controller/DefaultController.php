@@ -5,6 +5,7 @@ namespace Controller;
 use Library\Controller;
 use Model\Form\FeedbackForm;
 use Model\FeedbackRepository;
+use Model\Entity\Feedback;
 use Library\Request;
 use Library\Session;
 use Library\Router;
@@ -22,16 +23,13 @@ class DefaultController extends Controller
         
         if ($request->isPost()) {
             if ($form->isValid()) {
-               
-                $model = new FeedbackRepository();
-                $model->save([
-                    'author' => $form->author,
-                    'email' => $form->email,
-                    'message' => $form->message,
-                ]);
+                $model = $this->get('repository')->getRepository('Feedback');
+                $model->save(new Feedback($form->author,$form->email,$form->message));
                 Session::setFlash('Feedback sent');
-                Router::redirect('/index.php?route=default/feedback');
+                $this->get('router')->redirect('/index.php?route=default/feedback');
             }
+
+            Session::setFlash('Fill the fields properly');
         }
 
         return $this->render('feedback.phtml',['form' => $form]);

@@ -29,13 +29,13 @@ $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 $container = new \Library\Container();
 $container->set('router', new \Library\Router());
 $container->set('db_connection', $pdo);
-$container->set('repository', (new \Library\repositoryManager())->setPdo($pdo));
+$container->set('repository', (new \Library\RepositoryManager())->setPdo($pdo));
 
 $route = $request->get('route', 'default/index'); // $_GET['route']
 
 //todo: защита от дурака если нет слэш в значении
 
-if( !preg_match("//", $route) ) {
+if ( !preg_match("//", $route) ) {
 	throw new \Exception("Wrong format for controller");
 }
 

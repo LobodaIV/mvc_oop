@@ -11,4 +11,9 @@ trait PdoAwareTrait
 		$this->pdo = $pdo;
 		return $this;
 	}
+
+	public function getPdo()
+	{
+		return $this->pdo;
+	}
 }

@@ -3,6 +3,7 @@
 namespace Model;
 
 use Library\PdoAwareTrait;
+//use Model\Entity\Book as Book;
 
 class BookRepository
 {
@@ -12,6 +13,7 @@ class BookRepository
 	public function findAll()
 	{
 		$sth = $this->pdo->query('SELECT * FROM book');
-		return $sth->fetchAll(\PDO::FETCH_ASSOC);
+		$sth->setFetchMode(\PDO::FETCH_CLASS,'Model\Entity\Book');
+		return $sth->fetchAll(\PDO::FETCH_CLASS,'Book');
 	}
 }
