@@ -22,9 +22,9 @@ spl_autoload_register( function($className) {
 \Library\Session::start();
 
 $request = new \Library\Request();
-
+$isAdminUrl = strpos($request->getUri(),'/admin') === 0;
 //check if /admin exists in uri
-if ( strpos($request->getUri(),'/admin') === 0 ) {
+if ($isAdminUrl) {
     \Library\Controller::setAdminLayout();
 }
 
@@ -46,10 +46,9 @@ if ( !preg_match("//", $route) ) {
 
 $route = explode('/', $route);
 
-$controller = 'Controller' . DS . ucfirst($route[0]) . 'Controller';
-$action = $route[1] . 'Action';
+$controller = 'Controller\\' . ($isAdminUrl ? 'Admin\\' : '') . ucfirst($route[0]) . 'Controller';
 
-//$controller = new $controller();//Controller\DefaultController
+$action = $route[1] . 'Action';
 
 $controller = (new $controller())->setContainer($container);
 

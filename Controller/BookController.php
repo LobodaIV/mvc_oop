@@ -39,8 +39,4 @@ class BookController extends Controller
         
     }
     
-    public function editAction()
-    {
-        
-    }
 }
