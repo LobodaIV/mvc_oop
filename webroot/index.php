@@ -23,6 +23,11 @@ spl_autoload_register( function($className) {
 
 $request = new \Library\Request();
 
+//check if /admin exists in uri
+if ( strpos($request->getUri(),'/admin') === 0 ) {
+    \Library\Controller::setAdminLayout();
+}
+
 $pdo = new \PDO('mysql: host=localhost; dbname=mvc','root','');
 $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 

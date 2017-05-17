@@ -6,6 +6,13 @@ abstract class Controller
 
 	protected $container;
 
+	private static $layout = 'layout.phtml';
+
+	public static function setAdminLayout()
+	{
+		self::$layout = 'admin_layout.phtml';
+	}
+
 	public function setContainer(Container $container)
 	{
 		$this->container = $container;
@@ -32,7 +39,7 @@ abstract class Controller
         $content = ob_get_clean();
 	
         ob_start();
-        require VIEW_DIR . 'layout.phtml';
+        require VIEW_DIR . self::$layout;
         return ob_get_clean();
 
 	}
