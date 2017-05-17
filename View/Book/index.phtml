@@ -1,4 +1,18 @@
 <h1>Books</h1>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+
+  	<?php foreach($pagination->buttons as $button) : ?>
+  		<li>
+  			<?php if ($button->isActive) : ?>
+  				<a href="/index.php?route=book/index&amp;page=<?=$button->page?>"><?=$button->text?></a>
+  			<?php else : ?>
+  				<span aria-hidden="true"><?=$button->text?></span>
+  			<?php endif ?>
+  		</li>
+  	<?php endforeach ?>
+  </ul>
+</nav>
 <div class="row">
 
   <?php foreach ($books as $book) : ?>

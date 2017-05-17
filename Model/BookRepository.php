@@ -10,10 +10,11 @@ class BookRepository
 
 	use PdoAwareTrait;
 
-	public function findAll()
+	public function findAllActive($offset, $count)
 	{
 		$collection = [];
-		$sth = $this->pdo->query('SELECT * FROM book');
+		/* ofsset - сколько пропускаем, count - сколько показываем */
+		$sth = $this->pdo->query("SELECT * FROM book WHERE status = 1 LIMIT {$offset}, {$count}");
 		
 		while($res = $sth->fetch(\PDO::FETCH_ASSOC)) {
 			$book = (new Book())
@@ -28,5 +29,11 @@ class BookRepository
 		}
 
 		return $collection;
+	}
+
+	public function count()
+	{
+		$sth = $this->pdo->query('SELECT COUNT(*) FROM book WHERE status = 1');
+		return $sth->fetchColumn(); /* fetchColumn - даст одно значение в колонке */
 	}
 }

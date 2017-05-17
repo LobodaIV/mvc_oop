@@ -5,6 +5,7 @@ namespace Library\Pagination;
 class Pagination
 {
     public $buttons = array();
+    
     public function __construct(Array $options = array('itemsCount' => 257, 'itemsPerPage' => 10, 'currentPage' => 1))
     {
         extract($options);
