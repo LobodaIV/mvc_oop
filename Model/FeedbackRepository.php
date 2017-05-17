@@ -12,7 +12,8 @@ class FeedbackRepository
     {
     	$sth = $this->pdo->prepare('INSERT INTO feedback VALUES (null, :author, :email, :message, null)');
         $sth->execute( 
-        	[ 'author'=>$feedback->getAuthor(), 
+        	[ 
+              'author'=>$feedback->getAuthor(), 
         	  'email'=>$feedback->getEmail(), 
         	  'message' => $feedback->getMessage() 
         	]);
