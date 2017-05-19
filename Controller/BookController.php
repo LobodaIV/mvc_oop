@@ -34,9 +34,16 @@ class BookController extends Controller
  
     }
     
-    public function showAction()
+    public function showAction(Request $request)
     {
-        
-    }
+        $bookId = (int)explode('id=',$request->get('route'))[1];
+        $repository = $this->get('repository')->getRepository('Book');
+        $book = $repository->findBookById($bookId);
     
+        $data = [
+            'book' => $book
+        ];
+
+        return $this->render('book.phtml', $data);
+    }    
 }
