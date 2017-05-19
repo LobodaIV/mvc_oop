@@ -3,20 +3,21 @@
 namespace Controller\Admin;
 use Library\Controller;
 use Library\Request;
-use Library\Pagination\Pagination;
+use Model\BookRepository;
+use Model\Entity\Author;
 
-class StyleController extends Controller
+class AuthorController extends Controller
 {
  	public function indexAction(Request $request)
     {        
         $repository = $this->get('repository')->getRepository('Book'); // \Model\BookRepository
-        $styles = $repository->findStyles();
+        $authors = $repository->findAuthors();
 
         $data = [
-			'styles' => $styles
+			'authors' => $authors
         ];
 
-        return $this->render('styles.phtml', $data);      
+        return $this->render('authors.phtml', $data);      
  
     }
 }
