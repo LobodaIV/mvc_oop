@@ -23,7 +23,7 @@
 	        <h3><?= $book->getTitle() ?></h3>
 	        <p><?= $book->getDescription() ?></p>
 	        <p>
-	        	<a href="#" class="btn btn-primary" role="button">Details</a>
+	        	<a href="/index.php?route=book/show/id=<?=$book->getId()?>" class="btn btn-primary" role="button">Details</a>
 	        	<a href="#" class="btn btn-default" role="button">Add to Cart</a>
 	        </p>
 	      </div>

@@ -40,7 +40,7 @@ class BookRepository
 		
 		while($res = $sth->fetch(\PDO::FETCH_ASSOC)) {
 			$book = (new Book())
-			->setId(null)
+			->setId($res['id'])
 			->setTitle($res['title'])
 			->setPrice($res['price'])
 			->setStatus((bool) $res['status'])
@@ -51,6 +51,12 @@ class BookRepository
 		}
 
 		return $collection;
+	}
+
+	public function findBookById($id)
+	{
+		$sth = $this->pdo->query("SELECT * FROM book WHERE id = $id");
+		return $sth->fetch(\PDO::FETCH_ASSOC);
 	}
 
 	public function count()
