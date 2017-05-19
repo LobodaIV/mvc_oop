@@ -14,11 +14,10 @@ class StyleController extends Controller
         $styles = $repository->findStyles();
 
         $data = [
-            'pagination' => $pagination,
-            'books' => $books
+			'styles' => $styles
         ];
 
-        return $this->render('index.phtml', $data);      
+        return $this->render('styles.phtml', $data);      
  
     }
 }

@@ -11,6 +11,7 @@ spl_autoload_register( function($className) {
     $file = ROOT . str_replace('\\', DS, "{$className}.php");
     if( !file_exists($file) )
     {
+        echo $file;
     	throw new \Exception("File not found");
     }
 
