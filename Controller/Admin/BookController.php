@@ -10,7 +10,7 @@ use Model\BookRepository;
 class BookController extends Controller
 {
 
-    const BOOKS_PER_PAGE = 30;
+    const BOOKS_PER_PAGE = 10;
 
     public function indexAction(Request $request)
     {        
