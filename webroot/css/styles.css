@@ -9,6 +9,6 @@ body {
 	min-height: 550px;
 }
 
-.admin__books-table table > th {
+.admin__books-table,.admin__styles-table table > th {
 	text-align: center;
 }

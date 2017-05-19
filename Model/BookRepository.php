@@ -4,6 +4,7 @@ namespace Model;
 
 use Library\PdoAwareTrait;
 use Model\Entity\Book;
+use Model\Entity\Style;
 
 class BookRepository
 {
@@ -57,6 +58,19 @@ class BookRepository
 	{
 		$sth = $this->pdo->query("SELECT * FROM book WHERE id = $id");
 		return $sth->fetch(\PDO::FETCH_ASSOC);
+	}
+
+	public function findStyles()
+	{
+		$collection = [];
+		$sth = $this->pdo->query("SELECT * FROM style");
+
+		while($res = $sth->fetch(\PDO::FETCH_ASSOC)) {
+			$style = (new Style())->setId($res['id'])->setTitle($res['title']);
+			$collection[] = $style;
+		}
+
+		return $collection;
 	}
 
 	public function count()
