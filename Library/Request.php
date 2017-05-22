@@ -37,6 +37,12 @@ class Request
         return (bool) $this->post;
     }
 
+    public function mergeGet($newGet) 
+    {
+        $this->get += $newGet;
+        $_GET += $newGet;
+    }
+
     public function getUri()
     {
         $uri = explode('?', $this->server['REQUEST_URI']);
