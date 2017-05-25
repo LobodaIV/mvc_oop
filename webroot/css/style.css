@@ -1,7 +1,13 @@
 body {
   padding-top: 50px;
 }
-.starter-template {
-  padding: 40px 15px;
-  text-align: center;
+
+
+.book-item {
+	min-height: 550px;
+}
+
+
+.admin__books-table table > th,#admin__styles-table table > th {
+	margin: auto;
 }

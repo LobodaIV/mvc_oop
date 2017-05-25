@@ -28,4 +28,8 @@ class Style
         $this->title = $title;
         return $this;
     }
+
+    public function setStyleForView($title) {
+        return $title = strtolower(str_replace(" ","-",$title));
+    }
 }
