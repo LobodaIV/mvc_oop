@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 
 define('DS', DIRECTORY_SEPARATOR);
@@ -33,6 +34,8 @@ $container->set('repository', (new \Library\RepositoryManager())->setPdo($pdo));
 
 $router->match($request);
 $route = $router->getCurrentRoute();
+
+die();
 
 $controller = 'Controller' . DS . $route->controller . 'Controller';
 $action = $route->action . 'Action';
