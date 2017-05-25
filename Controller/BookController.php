@@ -10,7 +10,7 @@ use Model\BookRepository;
 class BookController extends Controller
 {
 
-    const BOOKS_PER_PAGE = 8;
+    const BOOKS_PER_PAGE = 6;
 
     public function indexAction(Request $request)
     {
@@ -36,7 +36,7 @@ class BookController extends Controller
     
     public function showAction(Request $request)
     {
-        $bookId = (int)explode('id=',$request->get('route'))[1];
+        $bookId = (int)$request->get('id');
         $repository = $this->get('repository')->getRepository('Book');
         $book = $repository->findBookById($bookId);
     

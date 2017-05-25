@@ -1,54 +1,50 @@
 <?php
 error_reporting(E_ALL);
 
-
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', __DIR__ . DS . '..' . DS); // ../
 define('VIEW_DIR', ROOT.'View' . DS);
 
+require(ROOT . 'vendor/autoload.php');
+
 spl_autoload_register( function($className) {
     
     $file = ROOT . str_replace('\\', DS, "{$className}.php");
+<<<<<<< HEAD
     if( !file_exists($file) )
     {
         echo $file;
+=======
+    //echo $file;
+    if ( !file_exists($file) ) {
+>>>>>>> feature/router
     	throw new \Exception("File not found");
     }
 
     require_once $file;
-	    
 });
+
+try {
 
 \Library\Session::start();
 
 $request = new \Library\Request();
-$isAdminUrl = strpos($request->getUri(),'/admin') === 0;
-//check if /admin exists in uri
-if ($isAdminUrl) {
-    \Library\Controller::setAdminLayout();
-}
+$router = new \Library\Router(ROOT.'Config'.DS.'routes.php');
 
 $pdo = new \PDO('mysql: host=localhost; dbname=mvc','root','');
 $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 $container = new \Library\Container();
-$container->set('router', new \Library\Router());
+$container->set('router', $router);
 $container->set('db_connection', $pdo);
 $container->set('repository', (new \Library\RepositoryManager())->setPdo($pdo));
 
-$route = $request->get('route', 'default/index'); // $_GET['route']
+$router->match($request);
+$route = $router->getCurrentRoute();
 
-//todo: защита от дурака если нет слэш в значении
 
-if ( !preg_match("//", $route) ) {
-	throw new \Exception("Wrong format for controller");
-}
-
-$route = explode('/', $route);
-
-$controller = 'Controller\\' . ($isAdminUrl ? 'Admin\\' : '') . ucfirst($route[0]) . 'Controller';
-
-$action = $route[1] . 'Action';
+$controller = 'Controller' . DS . $route->controller . 'Controller';
+$action = $route->action . 'Action';
 
 $controller = (new $controller())->setContainer($container);
 
@@ -57,3 +53,12 @@ if (!method_exists($controller, $action)) {
 }
 
 echo $controller->$action($request);
+
+} catch (\Library\Exception\AccessDeniedException $e) {
+    $controller = (new \Controller\ExceptionController)->setContainer($container);
+    \Library\Controller::setDefaultLayout();
+    echo $controller->handleAction($request, $e);
+} catch (\Exception $e) {
+    $controller = (new \Controller\ExceptionController)->setContainer($container);
+    echo $controller->handleAction($request, $e);
+}

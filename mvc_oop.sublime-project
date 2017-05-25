@@ -1,0 +1,15 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"settings":
+	{
+		"xdebug":
+		{
+			"url": "http://mvc.oop/admin/admin_book_list"
+		}
+	}
+}
