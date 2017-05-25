@@ -18,5 +18,6 @@ return array(
     /* Admin Routes */
     new Route('admin_default', '/admin', 'Admin\\Default', 'index'),
     new Route('admin_manage_books', '/admin/books_management', 'Admin\\Book', 'index'),
-    new Route('admin_manage_authors','/admin/authors_management','Admin\\Author','index')
+    new Route('admin_manage_authors','/admin/authors_management','Admin\\Author','index'),
+    new Route('admin_manage_styles','/admin/styles_management','Admin\Style','index')
 );

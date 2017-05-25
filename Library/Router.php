@@ -56,7 +56,7 @@ class Router
             }
             
             $pattern = '@^'.$pattern.'$@'; //  @^/book-([0-9]+)\.html$@"
-
+            dump($pattern);
             if (preg_match($pattern, $uri, $matches)) {
                 $this->currentRoute = $route;
                 array_shift($matches);
