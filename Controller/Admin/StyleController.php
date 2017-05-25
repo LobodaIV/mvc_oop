@@ -4,7 +4,6 @@ namespace Controller\Admin;
 use Library\Controller;
 use Library\Request;
 use Library\Pagination\Pagination;
-use Model\BookRepository;
 
 class StyleController extends Controller
 {

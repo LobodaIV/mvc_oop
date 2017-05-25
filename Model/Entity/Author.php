@@ -5,8 +5,7 @@ namespace Model\Entity;
 class Author
 {
 	private $id;
-	private $firstName;
-	private $lastName;
+	private $name;
 
 	public function getId()
 	{
@@ -19,25 +18,14 @@ class Author
 		return $this;
 	}
 
-	public function getFirstName()
+	public function getName()
 	{
-		return $this->firstName;
+		return $this->name;
 	}
 
-	public function setFirstName($firstName)
+	public function setName($name)
 	{
-		$this->firstName = $firstName;
-		return $this;
-	}
-
-	public function getLastName()
-	{
-		return $this->lastName;
-	}
-
-	public function setLastName($lastName)
-	{
-		$this->lastName = $lastName;
+		$this->name = $name;
 		return $this;
 	}
 }

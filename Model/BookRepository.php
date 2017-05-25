@@ -5,6 +5,7 @@ namespace Model;
 use Library\PdoAwareTrait;
 use Model\Entity\Book;
 use Model\Entity\Style;
+use Model\Entity\Author;
 
 class BookRepository
 {
@@ -68,6 +69,19 @@ class BookRepository
 		while($res = $sth->fetch(\PDO::FETCH_ASSOC)) {
 			$style = (new Style())->setId($res['id'])->setTitle($res['title']);
 			$collection[] = $style;
+		}
+
+		return $collection;
+	}
+
+	public function findAuthors()
+	{
+		$collection = [];
+		$sth = $this->pdo->query("SELECT * FROM author");
+
+		while($res = $sth->fetch(\PDO::FETCH_ASSOC)) {
+			$author = (new Author())->setId($res['id'])->setName($res['name']);
+			$collection[] = $author;
 		}
 
 		return $collection;
