@@ -19,5 +19,8 @@ return array(
     new Route('admin_default', '/admin', 'Admin\\Default', 'index'),
     new Route('admin_manage_books', '/admin/books_management', 'Admin\\Book', 'index'),
     new Route('admin_manage_authors','/admin/authors_management','Admin\\Author','index'),
-    new Route('admin_manage_styles','/admin/styles_management','Admin\Style','index')
+    new Route('admin_manage_styles','/admin/styles','Admin\\Style','index'),
+    new Route('admin_manage_style','/admin/styles/edit/{style}\.html','Admin\\Style','edit',array('style' => '[a-z]+-?[a-z]+')),
+    new Route('admin_update_style','/admin/styles/update/{style}\.html','Admin\\Style','update',array('style'=>'[a-z]+-?[a-z]+'))
+
 );

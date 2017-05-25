@@ -1,0 +1,12 @@
+<div id="edit__style">
+    <form method="post" action="/admin/styles/update/<?=$style->setStyleForView($style->getTitle())?>.html">
+        <p><input type="text" name="id" value="<?=$style->getId()?>" hidden></p>
+        <p>
+            Style ID<input type="text" name="id" value="<?=$style->getId()?>" disabled>
+        </p>
+        <p>
+            Style Title<input type="text" name="title" value="<?=$style->getTitle()?>">
+        </p>
+        <button>Send</button>
+    </form>
+</div>

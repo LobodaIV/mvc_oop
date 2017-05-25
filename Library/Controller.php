@@ -30,9 +30,11 @@ abstract class Controller
 		//$dir = str_replace(['\\', 'Controller'], '', get_called_class());
 		$dir = trim(str_replace(['\\', 'Controller'], [DS,''], get_called_class()), '/');
 		$file = VIEW_DIR . $dir . DS . $view;
-	
-    	if ( !file_exists($file) ) {
-    		throw new \Exception("{$file} not found");
+		if ( !file_exists($file) ) {
+    	//	throw new \Exception("{$file} not found");
+    	echo $file;
+    	dump($file);
+			
     	}
     	
         ob_start();

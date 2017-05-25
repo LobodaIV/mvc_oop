@@ -74,6 +74,16 @@ class BookRepository
 		return $collection;
 	}
 
+	public function getStyleByTitle($style) {
+		$sth = $this->pdo->query("SELECT id,title FROM style WHERE title = '$style'");
+		return $sth->fetch(\PDO::FETCH_ASSOC);
+	}
+
+	public function updateStyleTitle($styleTitleId,$styleTitle) {
+		$sql = "UPDATE style SET title='$styleTitle' WHERE id = '$styleTitleId'";
+		return $this->pdo->exec($sql);
+	}
+
 	public function findAuthors()
 	{
 		$collection = [];
