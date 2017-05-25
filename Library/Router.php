@@ -26,7 +26,16 @@ class Router
     {
         return strpos($uri, '/admin') === 0;
     }
-    
+    /*
+    sort out each route in routes.php and finds needed one
+    for example first route 
+    $route->route = default
+    $route->pattern = /
+    $route->controller = Default
+    $route->action = index
+    $route->params = array(...)
+    */
+
     public function match(Request $request)
     {
         $uri = $request->getUri();
@@ -39,15 +48,20 @@ class Router
             $pattern = $route->pattern;
             
             foreach ($route->params as $key => $value) {
+                //str_replace ( mixed $search , mixed $replace , mixed $subject [, int &$count ] )
+                //all occurrences of search in subject replaced with the given replace value.
+                //input:$route=book-{id}\.html $params=( 'id' => 403)
+                //output:book-403.html
                 $pattern = str_replace('{' . $key . '}', "($value)", $pattern);
             }
             
-            $pattern = '@^' . $pattern .     '$@'; // @ - delimiter, @^book-([0-9]+)\.html$@
-            
+            $pattern = '@^'.$pattern.'$@'; //  @^/book-([0-9]+)\.html$@"
+
             if (preg_match($pattern, $uri, $matches)) {
                 $this->currentRoute = $route;
                 array_shift($matches);
                 $getParams = array_combine(array_keys($route->params), $matches);
+                //$getParams after - id => 403
                 $request->mergeGet($getParams);
                 break;
             }

@@ -6,6 +6,8 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', __DIR__ . DS . '..' . DS); // ../
 define('VIEW_DIR', ROOT.'View' . DS);
 
+require(ROOT . 'vendor/autoload.php');
+
 spl_autoload_register( function($className) {
     
     $file = ROOT . str_replace('\\', DS, "{$className}.php");
@@ -35,7 +37,6 @@ $container->set('repository', (new \Library\RepositoryManager())->setPdo($pdo));
 $router->match($request);
 $route = $router->getCurrentRoute();
 
-die();
 
 $controller = 'Controller' . DS . $route->controller . 'Controller';
 $action = $route->action . 'Action';

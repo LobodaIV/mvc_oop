@@ -5,7 +5,7 @@
   	<?php foreach($pagination->buttons as $button) : ?>
   		<li>
   			<?php if ($button->isActive) : ?>
-  				<a href="/index.php?route=book/index&amp;page=<?=$button->page?>"><?=$button->text?></a>
+  				<a href="/book_list-<?=$button->page?>"><?=$button->text?></a>
   			<?php else : ?>
   				<span aria-hidden="true"><?=$button->text?></span>
   			<?php endif ?>
@@ -23,7 +23,7 @@
 	        <h3><?= $book->getTitle() ?></h3>
 	        <p><?= $book->getDescription() ?></p>
 	        <p>
-	        	<a href="/index.php?route=book/show/id=<?=$book->getId()?>" class="btn btn-primary" role="button">Details</a>
+	        	<a href="/book-<?=$book->getId()?>.html" class="btn btn-primary" role="button">Details</a>
 	        	<a href="#" class="btn btn-default" role="button">Add to Cart</a>
 	        </p>
 	      </div>
