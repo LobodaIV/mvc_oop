@@ -10,14 +10,7 @@ require(ROOT . 'vendor/autoload.php');
 spl_autoload_register( function($className) {
     
     $file = ROOT . str_replace('\\', DS, "{$className}.php");
-<<<<<<< HEAD
-    if( !file_exists($file) )
-    {
-        echo $file;
-=======
-    //echo $file;
     if ( !file_exists($file) ) {
->>>>>>> feature/router
     	throw new \Exception("File not found");
     }
 
