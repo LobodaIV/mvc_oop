@@ -14,6 +14,7 @@ return array(
     new Route('feedback_page', '/feedback', 'Default', 'feedback'),
     new Route('login', '/login', 'Security', 'login'),
     new Route('logout', '/logout', 'Security', 'logout'),
+    new Route('cart', '/cart', 'Cart', 'index'),
 
     /* Admin Routes */
     new Route('admin_default', '/admin', 'Admin\\Default', 'index'),
