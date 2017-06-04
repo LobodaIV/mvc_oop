@@ -11,6 +11,8 @@ class CartController extends Controller
 {
     public function indexAction()
     {
+    	$cartCookie = $_COOKIE['cart'];
+    	
         return $this->render('index.phtml');
     }
 }
