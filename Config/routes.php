@@ -23,6 +23,8 @@ return array(
     new Route('admin_manage_authors','/admin/authors_management','Admin\\Author','index'),
     new Route('admin_manage_styles','/admin/styles','Admin\\Style','index'),
     new Route('admin_manage_style','/admin/styles/edit/{style}\.html','Admin\\Style','edit',array('style' => '[a-z]+-?[a-z]+')),
-    new Route('admin_update_style','/admin/styles/update/{style}\.html','Admin\\Style','update',array('style'=>'[a-z]+-?[a-z]+'))
-
+    new Route('admin_update_style','/admin/styles/update/{style}\.html','Admin\\Style','update',array('style'=>'[a-z]+-?[a-z]+')),
+    /* API routes */
+    new Route('api_books_list','/api/books', 'API\\Book','index'),
+    new Route('api_book_item', '/api/book/{id}','API\\Book','show', array('id' => '[0-9]+'))
 );

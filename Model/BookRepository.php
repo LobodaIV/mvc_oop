@@ -128,6 +128,19 @@ class BookRepository
 		return $collection;
 	}
 
+	public function findAllHydrateArray()
+	{
+		$sth = $this->pdo->query("SELECT * FROM book");
+		return $sth->fetchAll(\PDO::FETCH_ASSOC);
+	}
+
+	public function findByIdHydrateArray($id)
+	{
+		$sth = $this->pdo->prepare("SELECT * FROM book WHERE id = :id");
+		$sth->execute(['id' => $id]);
+		return $sth->fetch(\PDO::FETCH_ASSOC);
+	}
+
 	public function count()
 	{
 		$sth = $this->pdo->query('SELECT COUNT(*) FROM book WHERE status = 1');
