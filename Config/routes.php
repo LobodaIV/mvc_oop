@@ -15,6 +15,7 @@ return array(
     new Route('login', '/login', 'Security', 'login'),
     new Route('logout', '/logout', 'Security', 'logout'),
     new Route('cart', '/cart', 'Cart', 'index'),
+    new Route('cart_add', '/cart/add/{id}', 'Cart', 'add', array('id' => '[0-9]+') ),
 
     /* Admin Routes */
     new Route('admin_default', '/admin', 'Admin\\Default', 'index'),

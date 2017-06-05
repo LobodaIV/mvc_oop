@@ -32,6 +32,9 @@ $container->set('router', $router);
 $container->set('db_connection', $pdo);
 $container->set('repository', (new \Library\RepositoryManager())->setPdo($pdo));
 
+//dump($router);
+//dump($route->getCurrentRoute());
+
 $router->match($request);
 $route = $router->getCurrentRoute();
 

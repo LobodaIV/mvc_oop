@@ -1,1 +1,8 @@
 <h1>Cart controller</h1>
+<?php if (empty($cart)) : ?>
+	<h3>Cart is empty</h3>
+<?php else: ?>
+	<?php foreach ($cart as $book) : ?>
+		<?=$book->getId()?><?=$book->getTitle()?><?=$book->getPrice()?><?=$cartAmounts[$book->getId()]?><br>
+	<?php endforeach ?>
+<?php endif ?>

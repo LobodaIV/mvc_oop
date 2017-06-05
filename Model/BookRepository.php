@@ -61,6 +61,37 @@ class BookRepository
 		return $sth->fetch(\PDO::FETCH_ASSOC);
 	}
 
+	public function findByIds(array $ids)
+	{
+		if (!$ids) {
+			return [];
+		}
+
+		$placeholders = $collection = [];
+		foreach($ids as $id) {
+			$placeholders[] = '?';
+		}
+		$placeholders = implode(',',$placeholders);
+
+		$sth = $this->pdo->prepare("SELECT * FROM book WHERE id IN ($placeholders)");
+		$sth->execute($ids);
+
+		while($res = $sth->fetch(\PDO::FETCH_ASSOC)) {
+			$book = (new Book())
+			->setId($res['id'])
+			->setTitle($res['title'])
+			->setPrice($res['price'])
+			->setStatus((bool) $res['status'])
+			->setDescription($res['description'])
+			->setStyle($res['style_id']); 
+
+			$collection[] = $book;
+		}
+
+		return $collection;
+
+	}
+
 	public function findStyles()
 	{
 		$collection = [];
