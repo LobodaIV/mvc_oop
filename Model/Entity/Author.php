@@ -28,4 +28,9 @@ class Author
 		$this->name = $name;
 		return $this;
 	}
+
+    public function setAuthorForView($name) 
+    {
+    	return $name = strtolower(str_replace(" ", "-", $name));
+    }
 }
