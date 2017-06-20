@@ -35,7 +35,6 @@ $container->set('repository', (new \Library\RepositoryManager())->setPdo($pdo));
 $router->match($request);
 $route = $router->getCurrentRoute();
 
-
 $controller = 'Controller' . DS . $route->controller . 'Controller';
 $action = $route->action . 'Action';
 

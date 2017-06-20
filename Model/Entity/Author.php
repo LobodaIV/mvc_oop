@@ -6,6 +6,7 @@ class Author
 {
 	private $id;
 	private $name;
+	private $descr;
 
 	public function getId()
 	{
@@ -29,8 +30,20 @@ class Author
 		return $this;
 	}
 
+	public function setDescr($descr)
+	{
+		$this->descr = $descr;
+		return $this;
+	}
+
+	public function getDescr()
+	{
+		return $this->descr;
+	}
+
     public function setAuthorForView($name) 
     {
-    	return $name = strtolower(str_replace(" ", "-", $name));
+    	$name = strtolower(str_replace(" ", "-", $name));
+    	return $name.'-'.$this->getId();
     }
 }

@@ -60,6 +60,7 @@ class Router
             if (preg_match($pattern, $uri, $matches)) {
                 $this->currentRoute = $route;
                 array_shift($matches);
+               // dump($matches);
                 $getParams = array_combine(array_keys($route->params), $matches);
                 //$getParams after - id => 403
                 $request->mergeGet($getParams);
@@ -68,7 +69,8 @@ class Router
         }
         
         if (!$this->currentRoute) {
-            throw new \Exception('Page not found', 404);
+            //throw new \Exception('Page not found', 404);
+            dump($this);
         }
     }
     

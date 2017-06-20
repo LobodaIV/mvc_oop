@@ -1,0 +1,15 @@
+<div id="edit__author">
+    <form method="post" action="/admin/authors/update/<?=$author->setAuthorForView($author->getName())?>.html">
+        <p><input type="text" name="id" value="<?=$author->getId()?>" hidden></p>
+        <p>
+            Author ID<input type="text" name="id" value="<?=$author->getId()?>" disabled>
+        </p>
+        <p>
+            Author Name<input type="text" name="author_name" value="<?=$author->getName()?>">
+        </p>
+        <p>Author Description
+        <textarea><?=$author->getDescr() ?></textarea>
+        </p>
+        <button>Send</button>
+    </form>
+</div>

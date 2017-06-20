@@ -84,19 +84,6 @@ class BookRepository
 		return $this->pdo->exec($sql);
 	}
 
-	public function findAuthors()
-	{
-		$collection = [];
-		$sth = $this->pdo->query("SELECT * FROM author");
-
-		while($res = $sth->fetch(\PDO::FETCH_ASSOC)) {
-			$author = (new Author())->setId($res['id'])->setName($res['name']);
-			$collection[] = $author;
-		}
-
-		return $collection;
-	}
-
 	public function count()
 	{
 		$sth = $this->pdo->query('SELECT COUNT(*) FROM book WHERE status = 1');
